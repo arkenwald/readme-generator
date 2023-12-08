@@ -20,7 +20,8 @@ Use the inquirer to answer questions to create your README.
 
 Demo:
 
-https://drive.google.com/file/d/1QPMpg7xeFGIqZzETKu-sxiU4kkN8FPAw/view
+![Untitled_ Dec 8, 2023 12_01 AM (1)](https://github.com/arkenwald/readme-generator/assets/149994852/0b6f7f63-eb7b-4a85-880a-ba885124ea9c)
+
 
 
 GitHub Repository:
