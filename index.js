@@ -1,7 +1,11 @@
 //Include packages needed for this application
 const fs = require('fs')
 const inquirer = require('inquirer')
-inquirer
+const {renderLicenseBadge} = require('./utils/generateMarkdown.js');
+const {renderLicenseLink} = require('./utils/generateMarkdown.js');
+const {renderLicenseSection} = require('./utils/generateMarkdown.js');
+function init() {
+    inquirer
     // Create an array of questions for user input
     .prompt([
         {
@@ -12,7 +16,7 @@ inquirer
         {
             type: 'input',
             name: 'description',
-            message: 'Write a short description describing W5H of your project',
+            message: 'Write a short description describing W5H of your project.',
         },
         {
             type: 'input',
@@ -27,20 +31,44 @@ inquirer
         {
             type: 'input',
             name: 'credits',
-            message: 'list collaborators, third-party assets, or tutorials',
+            message: 'List collaborators, third-party assets, or tutorials.',
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'license',
-            message: 'what license is your project using? (just write the name & copy paste it in later)',
+            choices: ['MIT', 'GNU', 'apache'],
+            default: ['MIT'],
+            message: 'What license is your project using?',
+        },
+
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Enter github Link',
+        },
+
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Please input your email.',
+        },
+
+        {
+            type: 'input',
+            name: 'contactYou',
+            message: 'How do we contact you?',
         },
 
     ])
     // Create a function to write README file
     .then((data) => {
         const fileName = `README.md`;
-        // 
-            fs.writeFile(fileName, `${data.title}
+        const licenseBadge = renderLicenseBadge(data.license);
+        const licenseLink = renderLicenseLink(data.license);
+        const licenseSection = renderLicenseSection(data.license);
+            fs.writeFile(fileName, `
+                ${data.title}
+                ${licenseBadge}
                 ##Description
                 ${data.description}
                 ## Installation
@@ -50,12 +78,16 @@ inquirer
                 ##Credits
                 ${data.credits}
                 ##License
-                ${data.license}`, (err) =>
+                ${data.license}
+                ${licenseLink}
+                ${licenseSection}
+                ##Questions
+                ${data.github}
+                ${data.email}
+                You can contact me at: ${data.contactYou}`, (err) =>
                                 err ? console.log(err) : console.log('Success!'))
         
     })
-        // TODO: Create a function to initialize app
-        function init() { }
-
-        // Function call to initialize app
-        init();
+}
+// Function call to initialize app
+init();
