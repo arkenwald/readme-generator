@@ -20,7 +20,6 @@ Use the inquirer to answer questions to create your README.
 
 Demo:
 
-Live URL:
 
 
 
@@ -38,6 +37,13 @@ https://github.com/pnguyen412
 
 Website Resources:
 
+https://www.npmjs.com/package/inquirer/v/8.2.4
+
+https://choosealicense.com/licenses/
+
+https://www.sitepoint.com/understanding-module-exports-exports-node-js/
+
+https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide
 
 License
 
